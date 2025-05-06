@@ -6,12 +6,10 @@
 #include "TextureManager.h"
 #include <iostream>
 
-// Forward declarations
 class TransformComponent;
 class SpriteComponent;
 class HealthComponent;
 
-// TransformComponent
 class TransformComponent : public Component {
 public:
     Vector2D position;
@@ -64,7 +62,6 @@ public:
     }
 };
 
-// SpriteComponent
 class SpriteComponent : public Component {
 private:
     TransformComponent* transform;
@@ -101,8 +98,6 @@ public:
         transform = &entity->getComponent<TransformComponent>();
         if (!transform) {
             std::cout << "SpriteComponent: TransformComponent not found!" << std::endl;
-        } else {
-            std::cout << "SpriteComponent initialized for entity " << entity << std::endl;
         }
         srcRect.x = srcRect.y = 0;
         srcRect.w = transform ? transform->width : 32;
@@ -161,7 +156,6 @@ public:
     }
 };
 
-// KeyBoardController
 class KeyboardController : public Component {
 private:
     TransformComponent* transform;
@@ -171,26 +165,15 @@ public:
 
     void init() override {
         transform = &entity->getComponent<TransformComponent>();
-        if (!transform) {
-            std::cout << "KeyboardController: TransformComponent not found! Entity: " << entity << std::endl;
-        } else {
-            std::cout << "KeyboardController initialized for entity " << entity << std::endl;
-        }
     }
 
     void update() override {
-        if (!transform) {
-            std::cout << "KeyboardController: TransformComponent not found in update! Entity: " << entity << std::endl;
-            return;
-        }
-        std::cout << "KeyboardController updating for entity " << entity << std::endl;
 
         auto state = SDL_GetKeyboardState(nullptr);
 
         transform->velocity.x = 0;
         transform->velocity.y = 0;
 
-        // Di chuyển lên xuống trái phải
         if (state[SDL_SCANCODE_W]) {
             transform->velocity.y = -1;
         }
@@ -204,13 +187,11 @@ public:
             transform->velocity.x = 1;
         }
 
-        // Xử lý tấn công khi nhấn phím SPACE
         if (state[SDL_SCANCODE_SPACE]) {
             auto& sprite = entity->getComponent<SpriteComponent>();
             sprite.playAttack();
         }
 
-        // Chuẩn hóa tốc độ di chuyển
         float magnitude = transform->velocity.magnitude();
         if (magnitude > 0) {
             transform->velocity = transform->velocity / magnitude;
@@ -218,7 +199,6 @@ public:
     }
 };
 
-// HealthComponent
 class HealthComponent : public Component {
 private:
     TransformComponent* transform;
@@ -230,11 +210,6 @@ public:
 
     void init() override {
         transform = &entity->getComponent<TransformComponent>();
-        if (!transform) {
-            std::cout << "HealthComponent: TransformComponent not found!" << std::endl;
-        } else {
-            std::cout << "HealthComponent initialized for entity " << entity << std::endl;
-        }
     }
 
     void draw() override {
@@ -264,7 +239,6 @@ public:
     }
 };
 
-// EnemyAIComponent
 class EnemyAIComponent : public Component {
 private:
     TransformComponent* transform;
@@ -272,18 +246,13 @@ private:
     SpriteComponent* sprite;
     float attackRange = 70.0f;
     float chaseRange = 200.0f;
-    float attackCooldown = 2.0f;
+    float attackCooldown = 1.0f;
     float attackTimer = 0.0f;
     Mix_Chunk* attackSound;
 
 public:
     EnemyAIComponent(TransformComponent* playerTrans) : playerTransform(playerTrans) {
         attackSound = Mix_LoadWAV("assets/attack_sound.mp3");
-        if (!attackSound) {
-            std::cout << "EnemyAIComponent: Failed to load attack sound! Error: " << Mix_GetError() << std::endl;
-        } else {
-            std::cout << "EnemyAIComponent: Attack sound loaded successfully" << std::endl;
-        }
     }
 
     ~EnemyAIComponent() {
@@ -293,11 +262,6 @@ public:
     void init() override {
         transform = &entity->getComponent<TransformComponent>();
         sprite = &entity->getComponent<SpriteComponent>();
-        if (!transform || !sprite) {
-            std::cout << "EnemyAIComponent: Transform or Sprite not found for entity " << entity << std::endl;
-        } else {
-            std::cout << "EnemyAIComponent initialized for entity " << entity << std::endl;
-        }
     }
 
     void update() override {
@@ -318,8 +282,6 @@ public:
                 if (attackSound) {
                     if (Mix_PlayChannel(-1, attackSound, 0) == -1) {
                         std::cout << "Failed to play attack sound! Error: " << Mix_GetError() << std::endl;
-                    } else {
-                        std::cout << "Playing attack sound for enemy attack" << std::endl;
                     }
                 }
                 attackTimer = attackCooldown;

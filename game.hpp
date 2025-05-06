@@ -23,7 +23,6 @@ private:
     const Uint32 introDuration = 3000;
     const Uint32 displayDuration = 3000;
 
-    // Biến cho âm thanh
     Mix_Chunk* attackSound;
     Mix_Chunk* winSound;
     Mix_Chunk* loseSound;
