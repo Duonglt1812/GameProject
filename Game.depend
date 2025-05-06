@@ -1,0 +1,103 @@
+# depslib dependency file v1.0
+1745993000 source:c:\codeblock\siuuuuuuu\main.cpp
+	"game.hpp"
+
+1746329365 c:\codeblock\siuuuuuuu\game.hpp
+	<SDL.h>
+	<SDL_mixer.h>
+	"ECS.h"
+
+1746089022 source:c:\codeblock\siuuuuuuu\texturemanager.cpp
+	"TextureManager.h"
+	"game.hpp"
+	<iostream>
+
+1746089022 c:\codeblock\siuuuuuuu\texturemanager.h
+	<SDL.h>
+	<SDL_image.h>
+
+1746105933 source:c:\codeblock\siuuuuuuu\vector2d.cpp
+	"Vector2D.h"
+	<cmath>
+
+1745993000 c:\codeblock\siuuuuuuu\vector2d.h
+	<iostream>
+
+1746340939 source:c:\codeblock\siuuuuuuu\game.cpp
+	"game.hpp"
+	<iostream>
+	"TextureManager.h"
+	"Map.h"
+	"ECS.h"
+	"Component.h"
+	"Vector2D.h"
+
+1746328311 c:\codeblock\siuuuuuuu\map.h
+	"game.hpp"
+	"TextureManager.h"
+
+1746282321 c:\codeblock\siuuuuuuu\ecs.h
+	<vector>
+	<memory>
+	<algorithm>
+	<bits/stdc++.h>
+
+1746340708 c:\codeblock\siuuuuuuu\component.h
+	"ECS.h"
+	"Vector2D.h"
+	<SDL.h>
+	<SDL_mixer.h>
+	"TextureManager.h"
+	<iostream>
+
+1746504331 source:c:\codeblock\game\game.cpp
+	"game.hpp"
+	<iostream>
+	"TextureManager.h"
+	"Map.h"
+	"ECS.h"
+	"Component.h"
+	"Vector2D.h"
+
+1746503529 c:\codeblock\game\game.hpp
+	<SDL.h>
+	<SDL_mixer.h>
+	"ECS.h"
+
+1746282321 c:\codeblock\game\ecs.h
+	<vector>
+	<memory>
+	<algorithm>
+	<bits/stdc++.h>
+
+1746089022 c:\codeblock\game\texturemanager.h
+	<SDL.h>
+	<SDL_image.h>
+
+1746328311 c:\codeblock\game\map.h
+	"game.hpp"
+	"TextureManager.h"
+
+1746503629 c:\codeblock\game\component.h
+	"ECS.h"
+	"Vector2D.h"
+	<SDL.h>
+	<SDL_mixer.h>
+	"TextureManager.h"
+	<iostream>
+
+1745993000 c:\codeblock\game\vector2d.h
+	<iostream>
+
+1746497126 source:c:\codeblock\game\main.cpp
+	"game.hpp"
+
+1746089022 source:c:\codeblock\game\texturemanager.cpp
+	"TextureManager.h"
+	"game.hpp"
+	<iostream>
+
+1746105933 source:c:\codeblock\game\vector2d.cpp
+	"Vector2D.h"
+	<cmath>
+
