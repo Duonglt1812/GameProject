@@ -45,16 +45,17 @@ CÔNG CỤ PHÁT TRIỂN : CodeBlocks
 
 # NGUỒN : 
 
- 	- Code có sự học hỏi, tham khảo từ kênh youtube "Let's make game" với series "How to make a Game in C++ & SDL2 from scratch : https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx
-  	- Texture nhân vật được sử dụng từ website Craftpix.net : https://craftpix.net/freebies/free-pixel-art-tiny-hero-sprites/?num=1&count=869&sq=32x32%20character&pos=4
-	- Các texture tile map : 	- grass : https://opengameart.org/content/32x32-grass-tile
- 				 	- dirt : https://opengameart.org/content/dirt-texture-pack
-	      				- water : cắt ra từ https://opengameart.org/content/basic-map-32x32-by-ivan-voirol
+ - Code có sự học hỏi, tham khảo từ kênh youtube "Let's make game" với series "How to make a Game in C++ & SDL2 from scratch : https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx
+- Texture nhân vật được sử dụng từ website Craftpix.net : https://craftpix.net/freebies/free-pixel-art-tiny-hero-sprites/?num=1&count=869&sq=32x32%20character&pos=4
+- Các texture tile map :
+  	- grass : https://opengameart.org/content/32x32-grass-tile
+ 	- dirt : https://opengameart.org/content/dirt-texture-pack
+  	- water : cắt ra từ https://opengameart.org/content/basic-map-32x32-by-ivan-voirol
    	- Sound : 
-    			- Theme_sound : https://pixabay.com/sound-effects/soundtracksong-66467
-    		  	- attack_sound : https://pixabay.com/sound-effects/big-punch-short-with-male-moan-83735
-				- winning_sound : https://pixabay.com/sound-effects/goodresult-82807
-				- losing_sound : https://pixabay.com/sound-effects/losing-horn-313723
+		- Theme_sound : https://pixabay.com/sound-effects/soundtracksong-66467
+		- attack_sound : https://pixabay.com/sound-effects/big-punch-short-with-male-moan-83735
+		- winning_sound : https://pixabay.com/sound-effects/goodresult-82807
+		- losing_sound : https://pixabay.com/sound-effects/losing-horn-313723
 
 
 MỌI VẤN ĐỀ XIN LIÊN HỆ EMAIL : tungduong12340@gmail.com
