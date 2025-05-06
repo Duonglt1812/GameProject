@@ -1,0 +1,90 @@
+#pragma once
+#include "game.hpp"
+#include "TextureManager.h"
+
+class Map {
+private:
+    SDL_Rect src, dest;
+    SDL_Texture* water;
+    SDL_Texture* grass;
+    SDL_Texture* dirt;
+    int map[20][25];
+
+public:
+    Map() {
+        water = TextureManager::LoadTexture("assets/water.png");
+        grass = TextureManager::LoadTexture("assets/grass.png");
+        dirt = TextureManager::LoadTexture("assets/dirt.png");
+
+        src.x = src.y = 0;
+        src.w = dest.w = 48;
+        src.h = dest.h = 48;
+
+        int lv1[20][25] = {
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,1,1,1,0,2,2,2,2,1,1,0,0,1,2,2,2,0,0,1,1,1,1,0,0},
+    {0,1,2,1,0,2,1,1,2,2,1,0,0,2,2,1,2,0,0,2,2,2,1,0,0},
+    {0,1,2,2,1,1,0,0,0,1,2,2,2,2,1,0,0,0,1,1,1,2,1,0,0},
+    {0,1,2,2,2,0,0,1,1,2,1,1,1,2,1,1,1,0,0,0,2,2,1,0,0},
+    {0,0,1,1,1,1,1,2,2,1,0,0,1,2,2,2,1,1,1,1,2,1,0,0,0},
+    {0,0,0,0,1,2,2,2,1,1,0,0,2,1,0,0,2,2,2,1,1,0,0,0,0},
+    {0,0,0,1,1,2,1,0,0,1,1,2,2,1,0,1,2,1,1,2,1,1,0,0,0},
+    {0,0,1,1,2,2,0,0,0,2,1,1,2,2,1,2,1,1,2,2,2,1,0,0,0},
+    {0,1,2,2,2,1,0,0,1,2,2,1,1,1,2,2,2,2,1,1,2,1,0,0,0},
+    {0,1,1,1,1,1,1,1,1,1,2,2,0,0,1,2,1,1,2,1,1,1,0,0,0},
+    {0,0,0,1,2,2,2,1,0,0,1,2,2,1,2,2,0,0,1,1,2,2,1,0,0},
+    {0,0,1,2,2,1,1,0,0,1,2,1,1,1,1,0,0,1,1,2,1,1,1,0,0},
+    {0,1,2,2,1,0,0,0,1,1,1,0,0,2,2,1,1,1,0,0,1,2,2,0,0},
+    {0,1,2,1,0,0,0,0,1,1,0,0,2,2,2,2,2,1,0,0,0,2,1,0,0},
+    {0,1,1,0,0,0,0,0,0,0,0,1,2,1,1,1,2,2,1,0,0,1,1,0,0},
+    {0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,2,2,1,1,1,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,2,2,2,1,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,2,1,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0}
+};
+
+
+        for (int row = 0; row < 20; row++) {
+            for (int col = 0; col < 25; col++) {
+                map[row][col] = lv1[row][col];
+            }
+        }
+    }
+
+    ~Map() {
+        SDL_DestroyTexture(water);
+        SDL_DestroyTexture(grass);
+        SDL_DestroyTexture(dirt);
+    }
+
+    void DrawMap() {
+        for (int row = 0; row < 20; row++) {
+            for (int col = 0; col < 25; col++) {
+                int tile = map[row][col];
+                dest.x = col * 48;
+                dest.y = row * 48;
+
+                switch (tile) {
+                case 0:
+                    TextureManager::Draw(water, src, dest);
+                    break;
+                case 1:
+                    TextureManager::Draw(grass, src, dest);
+                    break;
+                case 2:
+                    TextureManager::Draw(dirt, src, dest);
+                    break;
+                }
+            }
+        }
+    }
+
+    int getTileID(int x, int y) {
+        int col = x / 48;
+        int row = y / 48;
+        if (row >= 0 && row < 20 && col >= 0 && col < 25) {
+            return map[row][col];
+        }
+        return -1;
+    }
+};
