@@ -50,7 +50,7 @@
 	"TextureManager.h"
 	<iostream>
 
-1746504331 source:c:\codeblock\game\game.cpp
+1746610741 source:c:\codeblock\game\game.cpp
 	"game.hpp"
 	<iostream>
 	"TextureManager.h"
@@ -59,10 +59,11 @@
 	"Component.h"
 	"Vector2D.h"
 
-1746503529 c:\codeblock\game\game.hpp
+1746610716 c:\codeblock\game\game.hpp
 	<SDL.h>
+	<SDL_image.h>
 	<SDL_mixer.h>
-	"ECS.h"
+	<vector>
 
 1746282321 c:\codeblock\game\ecs.h
 	<vector>
@@ -74,11 +75,11 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1746328311 c:\codeblock\game\map.h
+1746610716 c:\codeblock\game\map.h
 	"game.hpp"
 	"TextureManager.h"
 
-1746503629 c:\codeblock\game\component.h
+1746610716 c:\codeblock\game\component.h
 	"ECS.h"
 	"Vector2D.h"
 	<SDL.h>

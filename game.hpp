@@ -1,37 +1,11 @@
 #pragma once
 #include <SDL.h>
+#include <SDL_image.h>
 #include <SDL_mixer.h>
-#include "ECS.h"
+#include <vector>
 
 class Game {
-private:
-    enum GameState {
-        INTRO,
-        PLAYING,
-        WIN,
-        LOSE
-    };
-
-    GameState gameState;
-    bool isRunning;
-    SDL_Window* window;
-    SDL_Texture* introTexture;
-    SDL_Texture* winTexture;
-    SDL_Texture* loseTexture;
-    Uint32 gameOverTime;
-    Uint32 introTime;
-    const Uint32 introDuration = 3000;
-    const Uint32 displayDuration = 3000;
-
-    Mix_Chunk* attackSound;
-    Mix_Chunk* winSound;
-    Mix_Chunk* loseSound;
-    Mix_Music* themeSound;
-
-    void ShowGameOverScreen();
-
 public:
-    static SDL_Renderer* renderer;
     Game();
     ~Game();
 
@@ -40,7 +14,30 @@ public:
     void update();
     void render();
     void clean();
+    void ShowGameOverScreen();
 
     bool running() { return isRunning; }
-};
 
+    static SDL_Renderer* renderer;
+
+private:
+    bool isRunning;
+    SDL_Window* window;
+    enum GameState { INTRO, STAGE1, PLAYING, STAGE2, PLAYING_STAGE2, WIN, LOSE };
+    GameState gameState;
+    SDL_Texture* introTexture;
+    SDL_Texture* stage1Texture;
+    SDL_Texture* stage2Texture;
+    SDL_Texture* winTexture;
+    SDL_Texture* loseTexture;
+    Uint32 gameOverTime;
+    Uint32 introTime;
+    Uint32 stageTime;
+    const Uint32 introDuration = 3000;
+    const Uint32 stageDuration = 2000;
+    const Uint32 displayDuration = 3000;
+    Mix_Chunk* attackSound;
+    Mix_Chunk* winSound;
+    Mix_Chunk* loseSound;
+    Mix_Music* themeSound;
+};

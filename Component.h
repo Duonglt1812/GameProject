@@ -44,6 +44,11 @@ public:
     }
 
     void update() override {
+        float maxVelocity = baseSpeed;
+        float magnitude = velocity.magnitude();
+        if (magnitude > maxVelocity) {
+            velocity = velocity / magnitude * maxVelocity;
+        }
         position += velocity * currentSpeed;
         if (velocity.x != 0 || velocity.y != 0) {
         }
@@ -131,8 +136,8 @@ public:
 
         destRect.x = static_cast<int>(transform->position.x);
         destRect.y = static_cast<int>(transform->position.y);
-        destRect.w = transform->width * transform->scale;
-        destRect.h = transform->height * transform->scale;
+        destRect.w = static_cast<int>(transform->width * transform->scale);
+        destRect.h = static_cast<int>(transform->height * transform->scale);
     }
 
     void draw() override {
@@ -168,7 +173,6 @@ public:
     }
 
     void update() override {
-
         auto state = SDL_GetKeyboardState(nullptr);
 
         transform->velocity.x = 0;
@@ -216,9 +220,9 @@ public:
         if (!transform) return;
 
         SDL_Rect healthBar;
-        healthBar.x = transform->position.x;
-        healthBar.y = transform->position.y - 10;
-        healthBar.w = transform->width * (health / static_cast<float>(maxHealth));
+        healthBar.x = static_cast<int>(transform->position.x);
+        healthBar.y = static_cast<int>(transform->position.y - 10);
+        healthBar.w = static_cast<int>(transform->width * (health / static_cast<float>(maxHealth)));
         healthBar.h = 5;
 
         SDL_SetRenderDrawColor(Game::renderer, 255, 0, 0, 255);
@@ -237,6 +241,7 @@ public:
     int getHealth() const {
         return health;
     }
+
 };
 
 class EnemyAIComponent : public Component {
@@ -249,9 +254,11 @@ private:
     float attackCooldown = 1.0f;
     float attackTimer = 0.0f;
     Mix_Chunk* attackSound;
+    bool isBoss = false;
 
 public:
-    EnemyAIComponent(TransformComponent* playerTrans) : playerTransform(playerTrans) {
+    EnemyAIComponent(TransformComponent* playerTrans, bool boss = false)
+        : playerTransform(playerTrans), isBoss(boss) {
         attackSound = Mix_LoadWAV("assets/attack_sound.mp3");
     }
 
@@ -278,7 +285,7 @@ public:
             if (distance < attackRange && attackTimer <= 0) {
                 sprite->playAttack();
                 auto& playerHealth = playerTransform->entity->getComponent<HealthComponent>();
-                playerHealth.takeDamage(10);
+                playerHealth.takeDamage(isBoss ? 20 : 10);
                 if (attackSound) {
                     if (Mix_PlayChannel(-1, attackSound, 0) == -1) {
                         std::cout << "Failed to play attack sound! Error: " << Mix_GetError() << std::endl;
