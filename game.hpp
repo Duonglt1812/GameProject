@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <vector>
+#include "Vector2D.h"
 
 class Game {
 public:
@@ -26,6 +27,7 @@ private:
     enum GameState { INTRO, STAGE1, PLAYING, STAGE2, PLAYING_STAGE2, WIN, LOSE };
     GameState gameState;
     SDL_Texture* introTexture;
+    SDL_Texture* introTexture2;
     SDL_Texture* stage1Texture;
     SDL_Texture* stage2Texture;
     SDL_Texture* winTexture;
@@ -33,6 +35,7 @@ private:
     Uint32 gameOverTime;
     Uint32 introTime;
     Uint32 stageTime;
+    Uint32 introStartTime;
     const Uint32 introDuration = 3000;
     const Uint32 stageDuration = 2000;
     const Uint32 displayDuration = 3000;
@@ -40,4 +43,23 @@ private:
     Mix_Chunk* winSound;
     Mix_Chunk* loseSound;
     Mix_Music* themeSound;
+    SDL_Texture* playButtonTexture;
+    SDL_Texture* quitButtonTexture;
+    SDL_Texture* soundButtonTexture;
+    bool isMusicOn;
+    bool introStarted;
+
+    struct Item {
+        SDL_Texture* texture;
+        Vector2D position;
+        int width;
+        int height;
+        bool active;
+        enum ItemType { HP, SWORD } type;
+        Item(SDL_Texture* tex, float x, float y, int w, int h, ItemType t) : texture(tex), position(x, y), width(w), height(h), active(true), type(t) {}
+    };
+    std::vector<Item> items;
+    SDL_Texture* hpTexture;
+    SDL_Texture* swordTexture;
+    bool hasSword;
 };

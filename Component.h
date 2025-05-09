@@ -159,6 +159,15 @@ public:
             attackTimer = 0.5f;
         }
     }
+
+    void updateTextures(const char* idlePath, const char* walkPath, const char* attackPath) {
+        SDL_DestroyTexture(idleTexture);
+        SDL_DestroyTexture(walkTexture);
+        SDL_DestroyTexture(attackTexture);
+        idleTexture = TextureManager::LoadTexture(idlePath);
+        walkTexture = TextureManager::LoadTexture(walkPath);
+        attackTexture = TextureManager::LoadTexture(attackPath);
+    }
 };
 
 class KeyboardController : public Component {
@@ -232,6 +241,7 @@ public:
     void takeDamage(int damage) {
         health -= damage;
         if (health < 0) health = 0;
+        if (health > maxHealth) health = maxHealth;
     }
 
     bool isDead() const {
@@ -242,6 +252,9 @@ public:
         return health;
     }
 
+    void addHealth(int amount) {
+        takeDamage(-amount);
+    }
 };
 
 class EnemyAIComponent : public Component {
