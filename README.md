@@ -24,7 +24,7 @@ CÔNG CỤ PHÁT TRIỂN : CodeBlocks
 	B1 : 	Tải dự án Game sử dụng GitHub Desktop hoặc lệnh: git clone https://github.com/Duonglt1812/GameProject.git
 	B2 :	Copy các file đuôi "dll" vào đường dẫn "bin/Debug"
  	B3 :	Copy tệp assets vào đường dẫn "bin/Debug"
-  	B4 : 	Mở file Game.exe trong "bin/Debug" để bắt đầu game
+  	B4 : 	Mở file siuuuuuuu.exe trong "bin/Debug" để bắt đầu game
 
 
 # HƯỚNG DẪN CHƠI : 
