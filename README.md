@@ -43,7 +43,7 @@ CÔNG CỤ PHÁT TRIỂN : CodeBlocks
 
 Nhân vật sau khi nhặt vật phẩm : 
 
-![Player](assets/show_player.png)
+
 
 
   *Lưu ý :
