@@ -5,6 +5,7 @@
 #include <SDL_mixer.h>
 #include "TextureManager.h"
 #include <iostream>
+#include "Map.h"
 
 class TransformComponent;
 class SpriteComponent;
@@ -262,6 +263,7 @@ private:
     TransformComponent* transform;
     TransformComponent* playerTransform;
     SpriteComponent* sprite;
+    Map* map;
     float attackRange = 70.0f;
     float chaseRange = 200.0f;
     float attackCooldown = 1.0f;
@@ -270,8 +272,8 @@ private:
     bool isBoss = false;
 
 public:
-    EnemyAIComponent(TransformComponent* playerTrans, bool boss = false)
-        : playerTransform(playerTrans), isBoss(boss) {
+    EnemyAIComponent(TransformComponent* playerTrans, Map* gameMap, bool boss = false)
+        : playerTransform(playerTrans), map(gameMap), isBoss(boss) {
         attackSound = Mix_LoadWAV("assets/attack_sound.mp3");
     }
 
@@ -294,6 +296,10 @@ public:
             attackTimer -= 1.0f / 60.0f;
         }
 
+        Vector2D oldVelocity = transform->velocity;
+        transform->velocity.x = 0;
+        transform->velocity.y = 0;
+
         if (distance <= chaseRange) {
             if (distance < attackRange && attackTimer <= 0) {
                 sprite->playAttack();
@@ -311,14 +317,25 @@ public:
                 if (distance > 1.0f) {
                     direction = direction / distance;
                 }
-                transform->velocity = direction;
-            } else {
-                transform->velocity.x = 0;
-                transform->velocity.y = 0;
+
+                Vector2D newPosition = transform->position + direction * transform->currentSpeed;
+
+                int pw = transform->width;
+                int ph = transform->height;
+                Vector2D topLeft     = newPosition;
+                Vector2D topRight    = newPosition + Vector2D(pw - 1, 0);
+                Vector2D bottomLeft  = newPosition + Vector2D(0, ph - 1);
+                Vector2D bottomRight = newPosition + Vector2D(pw - 1, ph - 1);
+
+                int idTL = map->getTileID(static_cast<int>(topLeft.x), static_cast<int>(topLeft.y));
+                int idTR = map->getTileID(static_cast<int>(topRight.x), static_cast<int>(topRight.y));
+                int idBL = map->getTileID(static_cast<int>(bottomLeft.x), static_cast<int>(bottomLeft.y));
+                int idBR = map->getTileID(static_cast<int>(bottomRight.x), static_cast<int>(bottomRight.y));
+
+                if (idTL != 0 && idTR != 0 && idBL != 0 && idBR != 0) {
+                    transform->velocity = direction;
+                }
             }
-        } else {
-            transform->velocity.x = 0;
-            transform->velocity.y = 0;
         }
     }
 };

@@ -89,7 +89,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         enemy.addComponent<TransformComponent>(enemyPositions[i][0], enemyPositions[i][1], 32, 32, 1.5);
         enemy.addComponent<SpriteComponent>("assets/enemy.png", "assets/enemy_walk.png", "assets/enemy_attack.png", true);
         enemy.addComponent<HealthComponent>(100);
-        enemy.addComponent<EnemyAIComponent>(&player.getComponent<TransformComponent>());
+        enemy.addComponent<EnemyAIComponent>(&player.getComponent<TransformComponent>(), gamemap);
         enemies.push_back(&enemy);
     }
 
@@ -225,30 +225,29 @@ void Game::update() {
             playerHealth.init();
             float nearbyEnemyPositions[9][2] = {
                 {48, 48},
-                {48, 816},
-                {576, 432},
+                {96, 768},
+                {576, 384},
                 {1152, 48},
                 {1152, 816},
                 {912, 480},
                 {912, 432},
                 {912, 528},
                 {864, 480}
-                };
+            };
             for (int i = 0; i < 9; i++) {
                 auto& enemy = manager.addEntity();
                 enemy.addComponent<TransformComponent>(nearbyEnemyPositions[i][0], nearbyEnemyPositions[i][1], 32, 32, 1.5);
                 enemy.addComponent<SpriteComponent>("assets/enemy.png", "assets/enemy_walk.png", "assets/enemy_attack.png", true);
                 enemy.addComponent<HealthComponent>(100);
-                enemy.addComponent<EnemyAIComponent>(&player.getComponent<TransformComponent>());
+                enemy.addComponent<EnemyAIComponent>(&player.getComponent<TransformComponent>(), gamemap);
                 enemies.push_back(&enemy);
             }
             auto& boss = manager.addEntity();
-            boss.addComponent<TransformComponent>(960, 480, 32, 32, 2.0);
+            boss.addComponent<TransformComponent>(960, 480, 32, 32, 2.5);
             boss.addComponent<SpriteComponent>("assets/boss.png", "assets/boss_walk.png", "assets/boss_attack.png", true);
             boss.addComponent<HealthComponent>(300);
-            boss.addComponent<EnemyAIComponent>(&player.getComponent<TransformComponent>(), true);
+            boss.addComponent<EnemyAIComponent>(&player.getComponent<TransformComponent>(), gamemap, true);
             enemies.push_back(&boss);
-
         }
         return;
     }
