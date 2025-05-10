@@ -24,15 +24,24 @@ CÔNG CỤ PHÁT TRIỂN : CodeBlocks
 	B1 : 	Tải dự án Game sử dụng GitHub Desktop hoặc lệnh: git clone https://github.com/Duonglt1812/GameProject.git
 	B2 :	Copy các file đuôi "dll" vào đường dẫn "bin/Debug"
  	B3 :	Copy tệp assets vào đường dẫn "bin/Debug"
-  	B4 : 	Mở file Game.exe trong "bin/Debug" để bắt đầu game
+  	B4 : 	Mở file siuuuuuuu.exe trong "bin/Debug" để bắt đầu game
 
 
 # HƯỚNG DẪN CHƠI : 
 
-	- Dùng 4 nút W(trên) - A(trái) - D(phải) - S(dưới) để điều hướng nhân vật.
- 	- Dùng nút Space để nhân vật tấn công.
-  	*Lưu ý : - Nhân vật khi không thể đi qua nước(water.png)
-   		 - Nhân vật khi đi qua cỏ(grass.png) sẽ bị giảm 1 nửa tốc độ 
+- Dùng 4 nút W(trên) - A(trái) - D(phải) - S(dưới) để điều hướng di chuyển nhân vật.
+  
+- Dùng nút Space để nhân vật tấn công.
+  
+- Sau khi tiêu diệt 1 enemy, sẽ rơi ra 1 vật phẩm hp, giúp tăng 10 healh :
+  
+
+- Ở Stage 1, có 1 vật phẩm kiếm được spawn, khi nhân vật nhận được vật phẩm này sẽ được nhân đôi damage cho đến cuối trò chơi :
+
+  
+  
+  	*Lưu ý :
+  		 - Nhân vật khi không thể đi qua nước(water.png).  Nhân vật khi đi qua cỏ(grass.png) sẽ bị giảm 1 nửa tốc độ. 
 
 # HƯỚNG PHÁT TRIỂN GAME : 
 
