@@ -29,10 +29,19 @@ CÔNG CỤ PHÁT TRIỂN : CodeBlocks
 
 # HƯỚNG DẪN CHƠI : 
 
-	- Dùng 4 nút W(trên) - A(trái) - D(phải) - S(dưới) để điều hướng nhân vật.
- 	- Dùng nút Space để nhân vật tấn công.
-  	*Lưu ý : - Nhân vật khi không thể đi qua nước(water.png)
-   		 - Nhân vật khi đi qua cỏ(grass.png) sẽ bị giảm 1 nửa tốc độ 
+- Dùng 4 nút W(trên) - A(trái) - D(phải) - S(dưới) để điều hướng di chuyển nhân vật.
+  
+- Dùng nút Space để nhân vật tấn công.
+  
+- Sau khi tiêu diệt 1 enemy, sẽ rơi ra 1 vật phẩm hp, giúp tăng 10 healh :
+  
+
+- Ở Stage 1, có 1 vật phẩm kiếm được spawn, khi nhân vật nhận được vật phẩm này sẽ được nhân đôi damage cho đến cuối trò chơi :
+
+  
+  
+  	*Lưu ý :
+  		 - Nhân vật khi không thể đi qua nước(water.png).  Nhân vật khi đi qua cỏ(grass.png) sẽ bị giảm 1 nửa tốc độ. 
 
 # HƯỚNG PHÁT TRIỂN GAME : 
 
