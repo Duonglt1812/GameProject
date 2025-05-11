@@ -39,11 +39,12 @@ CÔNG CỤ PHÁT TRIỂN : CodeBlocks
   
 
 - Ở Stage 1, có 1 vật phẩm kiếm được spawn, khi nhân vật nhận được vật phẩm này sẽ được nhân đôi damage cho đến cuối trò chơi :
+  
 ![Sword](assets/show_sword.png)
 
 Nhân vật sau khi nhặt vật phẩm : 
 
-
+![Player](/bin/Debug/assets/show_player.png)
 
 
   *Lưu ý :
