@@ -63,7 +63,7 @@ Nhân vật sau khi nhặt vật phẩm :
 
 - Code có sự học hỏi, tham khảo từ kênh youtube "Let's make game" với series "How to make a Game in C++ & SDL2 from scratch" : https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx
   
-- Texture nhân vật (player, enemy, boss) được sử dụng từ website Craftpix.net
+- Texture nhân vật (player, enemy, boss) : Craftpix.net
   
 - Các texture tile map : opengameart.org
   	
