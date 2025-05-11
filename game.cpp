@@ -16,7 +16,7 @@ SDL_Renderer* Game::renderer = nullptr;
 auto& player(manager.addEntity());
 std::vector<Entity*> enemies;
 
-Game::Game() : isRunning(false), window(nullptr), gameState(INTRO), introTexture(nullptr), introTexture2(nullptr), stage1Texture(nullptr), stage2Texture(nullptr), winTexture(nullptr), loseTexture(nullptr), gameOverTime(0), introTime(0), stageTime(0), introStartTime(0), attackSound(nullptr), winSound(nullptr), loseSound(nullptr), themeSound(nullptr), playButtonTexture(nullptr), quitButtonTexture(nullptr), soundButtonTexture(nullptr), isMusicOn(true), introStarted(false), hpTexture(nullptr), swordTexture(nullptr), hasSword(false) {}
+Game::Game() : isRunning(false), window(nullptr), gameState(INTRO), introTexture(nullptr), introTexture2(nullptr), stage1Texture(nullptr), stage2Texture(nullptr), winTexture(nullptr), loseTexture(nullptr), gameOverTime(0), introTime(0), stageTime(0), introStartTime(0), attackSound(nullptr), winSound(nullptr), loseSound(nullptr), themeSound(nullptr), playButtonTexture(nullptr), quitButtonTexture(nullptr), soundButtonTexture(nullptr), playHoverTexture(nullptr), quitHoverTexture(nullptr), isMusicOn(true), introStarted(false), hpTexture(nullptr), swordTexture(nullptr), hasSword(false) {}
 Game::~Game() {}
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
@@ -57,6 +57,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     playButtonTexture = TextureManager::LoadTexture("assets/play_button.png");
     quitButtonTexture = TextureManager::LoadTexture("assets/quit_button.png");
     soundButtonTexture = TextureManager::LoadTexture("assets/sound_button.png");
+    playHoverTexture = TextureManager::LoadTexture("assets/play_hover.png");
+    quitHoverTexture = TextureManager::LoadTexture("assets/quit_hover.png");
     hpTexture = TextureManager::LoadTexture("assets/hp.png");
     swordTexture = TextureManager::LoadTexture("assets/sword.png");
 
@@ -149,6 +151,11 @@ void Game::ShowGameOverScreen() {
     SDL_DestroyTexture(loseTexture);
     SDL_DestroyTexture(hpTexture);
     SDL_DestroyTexture(swordTexture);
+    SDL_DestroyTexture(playButtonTexture);
+    SDL_DestroyTexture(quitButtonTexture);
+    SDL_DestroyTexture(soundButtonTexture);
+    SDL_DestroyTexture(playHoverTexture);
+    SDL_DestroyTexture(quitHoverTexture);
     introTexture = nullptr;
     introTexture2 = nullptr;
     stage1Texture = nullptr;
@@ -157,6 +164,11 @@ void Game::ShowGameOverScreen() {
     loseTexture = nullptr;
     hpTexture = nullptr;
     swordTexture = nullptr;
+    playButtonTexture = nullptr;
+    quitButtonTexture = nullptr;
+    soundButtonTexture = nullptr;
+    playHoverTexture = nullptr;
+    quitHoverTexture = nullptr;
 
     const char* title = (gameState == WIN) ? "You Win!" : "You Lose!";
     window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 960, 0);
@@ -382,13 +394,26 @@ void Game::render() {
             SDL_Rect src = {0, 0, 1280, 960};
             TextureManager::Draw(introTexture, src, dest);
 
+            int mouseX, mouseY;
+            SDL_GetMouseState(&mouseX, &mouseY);
+
             SDL_Rect playSrc = {0, 0, 400, 210};
             SDL_Rect playDest = {440, 400, 400, 210};
-            TextureManager::Draw(playButtonTexture, playSrc, playDest);
+
+            if (mouseX >= playDest.x && mouseX <= playDest.x + playDest.w && mouseY >= playDest.y && mouseY <= playDest.y + playDest.h) {
+                TextureManager::Draw(playHoverTexture, playSrc, playDest);
+            } else {
+                TextureManager::Draw(playButtonTexture, playSrc, playDest);
+            }
 
             SDL_Rect quitSrc = {0, 0, 400, 210};
             SDL_Rect quitDest = {440, 630, 400, 210};
-            TextureManager::Draw(quitButtonTexture, quitSrc, quitDest);
+
+            if (mouseX >= quitDest.x && mouseX <= quitDest.x + quitDest.w && mouseY >= quitDest.y && mouseY <= quitDest.y + quitDest.h) {
+                TextureManager::Draw(quitHoverTexture, quitSrc, quitDest);
+            } else {
+                TextureManager::Draw(quitButtonTexture, quitSrc, quitDest);
+            }
 
             SDL_Rect soundSrc = {0, 0, 150, 150};
             SDL_Rect soundDest = {1080, 560, 150, 150};
@@ -451,6 +476,8 @@ void Game::clean() {
     SDL_DestroyTexture(playButtonTexture);
     SDL_DestroyTexture(quitButtonTexture);
     SDL_DestroyTexture(soundButtonTexture);
+    SDL_DestroyTexture(playHoverTexture);
+    SDL_DestroyTexture(quitHoverTexture);
     SDL_DestroyTexture(hpTexture);
     SDL_DestroyTexture(swordTexture);
     SDL_DestroyWindow(window);

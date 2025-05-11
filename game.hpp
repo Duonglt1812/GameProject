@@ -46,6 +46,8 @@ private:
     SDL_Texture* playButtonTexture;
     SDL_Texture* quitButtonTexture;
     SDL_Texture* soundButtonTexture;
+    SDL_Texture* playHoverTexture;
+    SDL_Texture* quitHoverTexture;
     bool isMusicOn;
     bool introStarted;
 
